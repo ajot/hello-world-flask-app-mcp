@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 import os
 import requests
 
@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+    return render_template('index.html')
 
 @app.route('/joke')
 def get_joke():
@@ -22,5 +22,5 @@ def get_joke():
         return jsonify({'error': 'Failed to fetch joke'}), 500
 
 if __name__ == '__main__':
-    port = int(os.getenv('PORT', 8080))
+    port = int(os.getenv('PORT', 4000))
     app.run(host='0.0.0.0', port=port) 
