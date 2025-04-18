@@ -1,0 +1,16 @@
+name: hello-world-flask-app
+region: nyc
+services:
+  - name: web
+    instance_size_slug: basic-xxs
+    instance_count: 1
+    github:
+      repo: ajotwani/hello-world-flask-app-mcp
+      branch: main
+      deploy_on_push: true
+    build_command: pip install -r requirements.txt
+    run_command: python app.py
+    envs:
+      - key: FLASK_ENV
+        scope: RUN_TIME
+        value: production 
